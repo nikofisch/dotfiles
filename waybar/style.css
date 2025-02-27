@@ -4,8 +4,8 @@
     font-size:15px;
     font-family: "CodeNewRoman Nerd Font Propo";
 }
-window#waybar{
-    all:unset;
+window#waybar {
+	background:unset
 }
 .modules-left {
     padding:7px;
