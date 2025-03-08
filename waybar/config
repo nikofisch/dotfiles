@@ -2,9 +2,8 @@
     "layer": "top",
         "position": "top",
         "reload_style_on_change": true,
-        "modules-left": ["custom/notification","clock","custom/pacman","tray"],
-        "modules-center": ["hyprland/workspaces"],
-        "modules-right": ["cpu","network","battery"],
+        "modules-left": ["custom/pacman", "custom/notification","clock","tray", "hyprland/workspaces"],
+        "modules-right": ["memory", "cpu","network","battery"],
 
 
         "hyprland/workspaces": {
@@ -80,7 +79,7 @@
             ],
         },
         "custom/pacman": {
-            "format": "󰅢 {}",
+            "format": " {}",
             "interval": 30,   
             "exec": "checkupdates | wc -l",
             "exec-if": "exit 0",
@@ -114,13 +113,18 @@
             "signal": 1
         },
         "cpu": {
-            //"format": "󰻠: {usage}%",
-            "format": "CPU: {usage}%",
+            "format": ": {usage}%",
+            //"format": "CPU: {usage}%",
 	    "tooltip": true,
+	    "interval": 1,
 	    
         },
         "memory": {
-            "format": ""
+            "format": ": {percentage}%",
+	    "tooltip": true,
+	    "interval": 1,
+	    
+
         },
         "temperature": {
             "critical-threshold": 80,
