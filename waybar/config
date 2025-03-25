@@ -2,8 +2,8 @@
     "layer": "top",
         "position": "top",
         "reload_style_on_change": true,
-        "modules-left": ["custom/pacman", "custom/notification","clock","tray", "hyprland/workspaces"],
-        "modules-right": ["memory", "cpu","network","battery"],
+        "modules-left": ["custom/pacman", "custom/notification", "clock", "tray", "hyprland/workspaces"],
+        "modules-right": ["pulseaudio", "memory", "temperature", "cpu","network","battery"],
 
 
         "hyprland/workspaces": {
@@ -14,7 +14,7 @@
                 "empty": ""
             },
             "persistent-workspaces": {
-                "*": [ 1,2,3,4,5 ]
+                "*": [ 1,2,3]
             }
         },
         "custom/notification": {
@@ -24,7 +24,7 @@
             "escape": true
         },
         "clock": {
-            "format": "{:%I:%M:%S %p} ",
+            "format": "{:%Y-%m-%d %I:%M:%S %p} ",
             "interval": 1,   
             "tooltip-format": "<tt>{calendar}</tt>",
             "calendar": {
@@ -83,10 +83,22 @@
             "interval": 30,   
             "exec": "checkupdates | wc -l",
             "exec-if": "exit 0",
-            "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+            "on-click": "kitty sh -c 'sudo pacman -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
             "signal": 8,
             "tooltip": false,
         },
+
+	"pulseaudio": {
+	    
+	    "format": "{icon} {volume}%",
+	    "format-muted": "󰝟 ",
+	    "format-icons": ["󰕿", "󰖀", "󰕾"],
+		
+
+	    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+	    "on-click-right": "pavucontrol",
+	},
+
         "custom/expand": {
             "format": "",
             "tooltip": false
@@ -113,23 +125,26 @@
             "signal": 1
         },
         "cpu": {
-            "format": ": {usage}%",
-            //"format": "CPU: {usage}%",
+            "format": " {usage}%",
+            //"format": "CPU {usage}%",
 	    "tooltip": true,
 	    "interval": 1,
 	    
         },
         "memory": {
-            "format": ": {percentage}%",
+            "format": " {percentage}%",
 	    "tooltip": true,
-	    "interval": 1,
-	    
+	    "interval": 1, 
 
         },
         "temperature": {
+	    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
             "critical-threshold": 80,
-            "format": "",
+            "format": " {temperatureC}°C",
+	    
+	    "interval": 1,
         },
+
         "tray": {
             "icon-size": 14,
             "spacing": 10
