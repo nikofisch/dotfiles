@@ -3,7 +3,7 @@
         "position": "top",
         "reload_style_on_change": true,
         "modules-left": ["custom/pacman", "custom/notification", "clock", "tray", "hyprland/workspaces"],
-        "modules-right": ["pulseaudio", "memory", "temperature", "cpu","network","battery"],
+        "modules-right": ["bluetooth", "backlight", "pulseaudio", "memory", "temperature", "cpu","network","battery"],
 
 
         "hyprland/workspaces": {
@@ -144,6 +144,14 @@
 	    
 	    "interval": 1,
         },
+
+	"backlight": {
+    	   "device": "amdgpu_bl1",
+    	   "format": "{icon} {percent}%",
+    	   "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
+    	   
+},
+
 
         "tray": {
             "icon-size": 14,

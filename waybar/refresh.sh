@@ -8,5 +8,3 @@ else
     # If not running, start waybar
     waybar &
 fi
-
-
